@@ -1,12 +1,12 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
+  Component,
   OnDestroy,
+  OnInit,
 } from "@angular/core";
-import { Params, ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { Location } from "@angular/common";
-import { Subject, Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { take, takeUntil } from "rxjs/operators";
 import { ComponentService } from "src/app/services/component.service";
 
