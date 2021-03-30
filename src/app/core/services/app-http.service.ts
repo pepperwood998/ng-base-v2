@@ -1,13 +1,15 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { environment } from "src/environments/environment";
 import { Observable } from "rxjs";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: "root",
 })
 export class AppHttpService {
-  constructor(private httpClient: HttpClient) {}
+  baseUrl = environment.apiBaseUrl;
+
+  constructor(protected httpClient: HttpClient) {}
 
   post<T>(uri: string, options?: HttpOptions) {
     return this.request<T>(HttpMethod.POST, uri, options);
@@ -39,7 +41,7 @@ export class AppHttpService {
     if (/^(https|http):\/\/.*$/.test(uri)) {
       fullUrl = uri;
     } else {
-      fullUrl = `${environment.apiBaseUrl}${uri}`;
+      fullUrl = `${this.baseUrl}${uri}`;
     }
     return fullUrl;
   }

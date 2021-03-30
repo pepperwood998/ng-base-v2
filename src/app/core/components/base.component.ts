@@ -8,7 +8,7 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 import { Location } from "@angular/common";
 import { Observable, Subject } from "rxjs";
 import { take, takeUntil } from "rxjs/operators";
-import { ComponentService } from "src/app/services/component.service";
+import { ComponentService } from "../services/component.service";
 
 @Component({
   selector: "app-base",
