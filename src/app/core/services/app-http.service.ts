@@ -7,8 +7,6 @@ import { environment } from "src/environments/environment";
   providedIn: "root",
 })
 export class AppHttpService {
-  baseUrl = environment.apiBaseUrl;
-
   constructor(protected httpClient: HttpClient) {}
 
   post<T>(uri: string, options?: HttpOptions) {
@@ -41,7 +39,7 @@ export class AppHttpService {
     if (/^(https|http):\/\/.*$/.test(uri)) {
       fullUrl = uri;
     } else {
-      fullUrl = `${this.baseUrl}${uri}`;
+      fullUrl = `${environment.apiBaseUrl}${uri}`;
     }
     return fullUrl;
   }
