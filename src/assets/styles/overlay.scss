@@ -10,6 +10,11 @@
     animation-name: slide-in;
     animation-duration: 0.3s;
     animation-timing-function: ease;
+
+    &.reverse {
+      bottom: -100%;
+      animation-name: slide-out;
+    }
   }
 
   @keyframes slide-in {
@@ -18,6 +23,15 @@
     }
     to {
       bottom: 0;
+    }
+  }
+
+  @keyframes slide-out {
+    from {
+      bottom: 0;
+    }
+    to {
+      bottom: -100%;
     }
   }
 }

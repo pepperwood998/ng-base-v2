@@ -10,7 +10,10 @@ export class DialogRef<T, D = any, R = any> {
     public config: DialogConfig<D>,
   ) {
     _overlayRef.addPanelClass(config?.panelClass);
-    _overlayRef.backdropClick().subscribe(() => this.close());
+    _overlayRef.backdropClick().subscribe(() => {
+      _overlayRef.addPanelClass("reverse");
+      this.close();
+    });
   }
 
   close(returnedData?: R): void {
