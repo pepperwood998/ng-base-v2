@@ -65,7 +65,8 @@
             "ignoreMemberSort": false,
             "allowSeparatedGroups": true
           }
-        ]
+        ],
+        "no-underscore-dangle": "off"
       }
     },
     {
