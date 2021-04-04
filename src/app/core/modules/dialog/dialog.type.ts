@@ -9,6 +9,7 @@ export class DialogRef<T, D = any, R = any> {
     public componentType: ComponentType<T>,
     public config: DialogConfig<D>,
   ) {
+    _overlayRef.addPanelClass(config?.panelClass);
     _overlayRef.backdropClick().subscribe(() => this.close());
   }
 
@@ -21,4 +22,5 @@ export class DialogRef<T, D = any, R = any> {
 
 export class DialogConfig<D = any> {
   data?: D;
+  panelClass?: string | string[];
 }

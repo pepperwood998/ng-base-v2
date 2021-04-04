@@ -1,0 +1,23 @@
+.cdk-global-overlay-wrapper {
+  .cdk-overlay-pane {
+    position: absolute !important;
+  }
+
+  .dialog-overlay {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    animation-name: slide-in;
+    animation-duration: 0.3s;
+    animation-timing-function: ease;
+  }
+
+  @keyframes slide-in {
+    from {
+      bottom: -100%;
+    }
+    to {
+      bottom: 0;
+    }
+  }
+}
