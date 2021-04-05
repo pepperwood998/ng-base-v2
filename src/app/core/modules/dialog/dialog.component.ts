@@ -1,11 +1,13 @@
-import { ComponentType } from "@angular/cdk/portal";
+import { CdkPortalOutlet, ComponentPortal } from "@angular/cdk/portal";
 import {
   ChangeDetectionStrategy,
   Component,
+  ComponentRef,
   HostBinding,
   OnInit,
+  ViewChild,
 } from "@angular/core";
-import { DialogConfig, DialogRef } from "./dialog.type";
+import { DialogRef } from "./dialog.type";
 
 @Component({
   selector: "app-dialog",
@@ -13,16 +15,18 @@ import { DialogConfig, DialogRef } from "./dialog.type";
   styleUrls: ["./dialog.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DialogComponent<T> implements OnInit {
-  @HostBinding("class.app-dialog-wrapper") classAppDialogWrapper = true;
+export class DialogComponent implements OnInit {
+  @HostBinding("class.app-dialog-host") classAppDialogHost = true;
+  @ViewChild(CdkPortalOutlet, { static: true })
+  private _portalOutlet: CdkPortalOutlet;
 
-  componentType: ComponentType<T>;
-  config: DialogConfig;
+  constructor() {}
 
-  constructor(private _dialogRef: DialogRef<T>) {}
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    this.componentType = this._dialogRef.componentType;
-    this.config = this._dialogRef.config;
+  attachComponentPortal<T>(
+    componentPortal: ComponentPortal<T>,
+  ): ComponentRef<T> {
+    return this._portalOutlet.attachComponentPortal(componentPortal);
   }
 }
