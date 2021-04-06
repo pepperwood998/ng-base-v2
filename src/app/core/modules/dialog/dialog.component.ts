@@ -7,7 +7,7 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { DialogRef } from "./dialog.type";
+import { DialogConfig } from "./dialog.type";
 
 @Component({
   selector: "app-dialog",
@@ -20,7 +20,7 @@ export class DialogComponent implements OnInit {
   @ViewChild(CdkPortalOutlet, { static: true })
   private _portalOutlet: CdkPortalOutlet;
 
-  constructor() {}
+  constructor(public config: DialogConfig) {}
 
   ngOnInit(): void {}
 

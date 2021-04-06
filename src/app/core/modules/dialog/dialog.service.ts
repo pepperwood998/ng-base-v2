@@ -42,7 +42,7 @@ export class DialogService {
       new ComponentPortal(DialogComponent, null, containerInjector),
     ).instance;
 
-    const dialogRef = new DialogRef<T, R>(overlayRef);
+    const dialogRef = new DialogRef<T, R>(overlayRef, container);
     const injector = this._createInjector(container, dialogRef, config);
     const componentRef = container.attachComponentPortal(
       new ComponentPortal(componentType, null, injector),

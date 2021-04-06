@@ -13,3 +13,20 @@
     height: 100%;
   }
 }
+
+.partial-dialog-backdrop {
+  background-color: transparent;
+  pointer-events: none;
+}
+
+.partial-dialog-wrapper {
+  .partial-dialog-panel {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    .partial-dialog-container {
+      pointer-events: auto;
+    }
+  }
+}

@@ -1,17 +1,23 @@
 import { OverlayRef } from "@angular/cdk/overlay";
 import { InjectionToken } from "@angular/core";
 import { Subject } from "rxjs";
+import { DialogComponent } from "./dialog.component";
 
 export class DialogRef<T, R = any> {
   afterClosed$ = new Subject<R>();
 
   componentInstance: T;
 
-  constructor(private _overlayRef: OverlayRef) {
+  constructor(
+    private _overlayRef: OverlayRef,
+    private _containerInstance: DialogComponent,
+  ) {
     this.componentInstance = null;
 
     _overlayRef.backdropClick().subscribe(() => {
-      this.close();
+      if (!_containerInstance.config.disableClose) {
+        this.close();
+      }
     });
   }
 
@@ -29,6 +35,7 @@ export class DialogConfig<D = any> {
   backdropClass?: string | string[] = "";
   wrapperClass?: string | string[] = "";
   panelClass?: string | string[] = "";
+  disableClose?: boolean = false;
 }
 
 export class DialogHelper {
