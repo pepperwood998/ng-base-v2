@@ -53,29 +53,6 @@ export class DialogService {
     return dialogRef;
   }
 
-  openFullDialog<T, D = any, R = any>(
-    componentType: ComponentType<T>,
-    config?: DialogConfig<D>,
-  ): DialogRef<T, R> {
-    const fullConfig: DialogConfig<D> = {
-      ...config,
-      backdropClass: [
-        "full-dialog-backdrop",
-        ...DialogHelper.getStringArray(config?.backdropClass),
-      ],
-      wrapperClass: [
-        "full-dialog-wrapper",
-        ...DialogHelper.getStringArray(config?.wrapperClass),
-      ],
-      panelClass: [
-        "full-dialog-panel",
-        ...DialogHelper.getStringArray(config?.panelClass),
-      ],
-    };
-
-    return this.open(componentType, fullConfig);
-  }
-
   closeAll(): void {
     let i = this._openDialogs.length;
     while (i--) {
