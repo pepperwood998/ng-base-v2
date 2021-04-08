@@ -1,4 +1,7 @@
-<div class="partial-dialog-container container">
+<div class="container"
+  [@slide]="animationState"
+  (@slide.start)="onAnimationStart($event)"
+  (@slide.done)="onAnimationDone($event)">
   <div>Dialog Title</div>
   <div>
     <p>Dialog content. This should be a long paragraph</p>

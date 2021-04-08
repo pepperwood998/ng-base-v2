@@ -1,9 +1,12 @@
 import { OverlayRef } from "@angular/cdk/overlay";
 import { InjectionToken } from "@angular/core";
 import { Subject } from "rxjs";
+import { filter, take } from "rxjs/operators";
+import { DialogInstanceBaseComponent } from "./dialog-instance-base.component";
 import { DialogComponent } from "./dialog.component";
 
-export class DialogRef<T, R = any> {
+export class DialogRef<T extends DialogInstanceBaseComponent, R = any> {
+  beforeClosed$ = new Subject<R>();
   afterClosed$ = new Subject<R>();
 
   componentInstance: T;
@@ -22,9 +25,33 @@ export class DialogRef<T, R = any> {
   }
 
   close(returnedData?: R): void {
-    this._overlayRef.dispose();
-    this.afterClosed$.next(returnedData);
-    this.afterClosed$.complete();
+    this.componentInstance.animationStateChanged
+      .pipe(
+        filter((event) => event.phaseName === "start"),
+        take(1),
+      )
+      .subscribe(() => {
+        this.beforeClosed$.next();
+        this.beforeClosed$.complete();
+        this._overlayRef.detachBackdrop();
+      });
+
+    this.componentInstance.animationStateChanged
+      .pipe(
+        filter(
+          (event) => event.phaseName === "done" && event.toState === "leave",
+        ),
+        take(1),
+      )
+      .subscribe(() => {
+        this._overlayRef.dispose();
+        this.afterClosed$.next(returnedData);
+        this.afterClosed$.complete();
+
+        this.componentInstance = null;
+      });
+
+    this.componentInstance.startExitAnimation();
   }
 }
 

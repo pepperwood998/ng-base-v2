@@ -9,6 +9,7 @@ import {
   DialogHelper,
   DialogRef,
 } from "./dialog.type";
+import { DialogInstanceBaseComponent } from "./dialog-instance-base.component";
 
 @Injectable({
   providedIn: DialogModule,
@@ -18,7 +19,7 @@ export class DialogService {
 
   constructor(private _overlay: Overlay, private _injector: Injector) {}
 
-  open<T, D = any, R = any>(
+  open<T extends DialogInstanceBaseComponent, D = any, R = any>(
     componentType: ComponentType<T>,
     config?: DialogConfig<D>,
   ): DialogRef<T, R> {
@@ -60,7 +61,7 @@ export class DialogService {
     }
   }
 
-  private _createInjector<T>(
+  private _createInjector<T extends DialogInstanceBaseComponent>(
     container: DialogComponent,
     ref: DialogRef<T>,
     config?: DialogConfig,

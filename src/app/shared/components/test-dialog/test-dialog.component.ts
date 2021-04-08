@@ -16,28 +16,31 @@ import {
   APP_DIALOG_DATA,
   DialogRef,
 } from "src/app/core/modules/dialog/dialog.type";
+import { DialogInstanceBaseComponent } from "src/app/core/modules/dialog/dialog-instance-base.component";
 
 @Component({
   selector: "app-test-dialog",
   templateUrl: "./test-dialog.component.html",
   styleUrls: ["./test-dialog.component.scss"],
   animations: [
-    trigger("slideUp", [
+    trigger("slide", [
       state("void", style({ bottom: "-100%" })),
       state("enter", style({ bottom: "0" })),
       state("leave", style({ bottom: "-100%" })),
-      transition("* => *", animate("200ms cubic-bezier(0.25, 0.8, 0.25, 1)")),
+      transition("* => *", animate("0.3s ease")),
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TestDialogComponent implements OnInit {
-  @HostBinding("@slideUp") slideUp = "enter";
-
+export class TestDialogComponent
+  extends DialogInstanceBaseComponent
+  implements OnInit {
   constructor(
     private _dialogRef: DialogRef<TestDialogComponent>,
     @Inject(APP_DIALOG_DATA) private _data: any,
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     console.log(this._data);
