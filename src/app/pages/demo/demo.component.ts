@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { DialogService } from "src/app/core/modules/dialog/dialog.service";
+import { TestDialogComponent } from "src/app/shared/components/test-dialog/test-dialog.component";
 
 @Component({
   selector: "app-demo",
@@ -7,7 +9,17 @@ import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DemoComponent implements OnInit {
-  constructor() {}
+  constructor(private _dialogService: DialogService) {}
 
   ngOnInit(): void {}
+
+  open(): void {
+    this._dialogService.open(TestDialogComponent, {
+      backdropClass: "partial-backdrop",
+      wrapperClass: "partial-wrapper",
+      panelClass: "partial-panel",
+      data: 2,
+      disableClose: true,
+    });
+  }
 }

@@ -24,6 +24,12 @@ export class DialogRef<T extends DialogInstanceBaseComponent, R = any> {
     });
   }
 
+  closeNow(returnedData?: R): void {
+    this._overlayRef.dispose();
+    this.afterClosed$.next(returnedData);
+    this.afterClosed$.complete();
+  }
+
   close(returnedData?: R): void {
     this.componentInstance.animationStateChanged
       .pipe(

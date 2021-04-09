@@ -1,13 +1,14 @@
-<div class="container"
-  [@slide]="animationState"
-  (@slide.start)="onAnimationStart($event)"
-  (@slide.done)="onAnimationDone($event)">
+<app-full-slide-dialog
+  [animationState]="animationState"
+  (animationStart)="onAnimationStart($event)"
+  (animationDone)="onAnimationDone($event)"
+>
   <div>Dialog Title</div>
   <div>
     <p>Dialog content. This should be a long paragraph</p>
   </div>
-  <hr>
+  <hr />
   <div>
     <button (click)="close()">Close</button>
   </div>
-</div>
+</app-full-slide-dialog>
