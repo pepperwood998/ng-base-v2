@@ -4,11 +4,11 @@ import {
   Inject,
   OnInit,
 } from "@angular/core";
-import { DialogInstanceBaseComponent } from "src/app/core/modules/dialog/dialog-instance-base.component";
 import {
   APP_DIALOG_DATA,
   DialogRef,
 } from "src/app/core/modules/dialog/dialog.type";
+import { SlideDialogComponent } from "../slide-dialog/slide-dialog.component";
 
 @Component({
   selector: "app-test-dialog",
@@ -17,7 +17,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestDialogComponent
-  extends DialogInstanceBaseComponent
+  extends SlideDialogComponent
   implements OnInit {
   constructor(
     private _dialogRef: DialogRef<TestDialogComponent>,
@@ -32,5 +32,10 @@ export class TestDialogComponent
 
   close(): void {
     this._dialogRef.close({ result: this._data });
+  }
+
+  toggleExpand(): void {
+    this.animationState =
+      this.animationState === "expand" ? "notExpand" : "expand";
   }
 }

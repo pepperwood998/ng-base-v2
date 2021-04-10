@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SlideDialogComponent } from "./full-slide-dialog.component";
+import { SlideDialogComponent } from "./slide-dialog.component";
 
 describe("SlideDialogComponent", () => {
   let component: SlideDialogComponent;

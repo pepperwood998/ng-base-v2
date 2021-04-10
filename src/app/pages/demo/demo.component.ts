@@ -15,9 +15,8 @@ export class DemoComponent implements OnInit {
 
   open(): void {
     this._dialogService.open(TestDialogComponent, {
-      backdropClass: "partial-backdrop",
-      wrapperClass: "partial-wrapper",
-      panelClass: "partial-panel",
+      backdropClass: "partial-dialog-backdrop",
+      wrapperClass: "partial-dialog-wrapper",
       data: 2,
       disableClose: true,
     });

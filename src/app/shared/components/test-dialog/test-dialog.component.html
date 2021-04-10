@@ -1,14 +1,9 @@
-<app-full-slide-dialog
-  [animationState]="animationState"
-  (animationStart)="onAnimationStart($event)"
-  (animationDone)="onAnimationDone($event)"
->
+<div class="container">
   <div>Dialog Title</div>
   <div>
     <p>Dialog content. This should be a long paragraph</p>
   </div>
   <hr />
-  <div>
-    <button (click)="close()">Close</button>
-  </div>
-</app-full-slide-dialog>
+  <button (click)="close()">Close</button>
+  <button (click)="toggleExpand()">Expand</button>
+</div>

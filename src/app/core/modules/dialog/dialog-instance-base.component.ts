@@ -12,7 +12,7 @@ import { AnimationEvent } from "@angular/animations";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogInstanceBaseComponent implements OnInit {
-  animationState: "void" | "enter" | "leave" = "enter";
+  animationState = "enter";
   animationStateChanged = new EventEmitter<AnimationEvent>();
 
   constructor() {}

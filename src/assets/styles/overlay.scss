@@ -1,9 +1,14 @@
-.app-dialog-host {
-  pointer-events: auto;
+body {
+  cursor: auto !important;
 }
 
-.partial-backdrop,
-.partial-wrapper,
-.partial-panel {
+.partial-dialog-backdrop,
+.partial-dialog-wrapper {
   pointer-events: none;
+}
+
+.app-slide-dialog {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
