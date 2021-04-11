@@ -1,10 +1,11 @@
+import { AnimationEvent } from "@angular/animations";
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   OnInit,
 } from "@angular/core";
-import { AnimationEvent } from "@angular/animations";
 
 @Component({
   selector: "app-dialog-instance-base",
@@ -15,7 +16,7 @@ export class DialogInstanceBaseComponent implements OnInit {
   animationState: "void" | "enter" | "leave" | string = "enter";
   animationStateChanged = new EventEmitter<AnimationEvent>();
 
-  constructor() {}
+  constructor(protected changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {}
 
@@ -29,5 +30,6 @@ export class DialogInstanceBaseComponent implements OnInit {
 
   startExitAnimation(): void {
     this.animationState = "leave";
+    this.changeDetectorRef.markForCheck();
   }
 }

@@ -21,4 +21,10 @@ export class DemoComponent implements OnInit {
       disableClose: true,
     });
   }
+
+  openPopUp(): void {
+    this._dialogService.open(TestDialogComponent, {
+      data: 2,
+    });
+  }
 }
